@@ -13,11 +13,16 @@
             --warning-color: #ffc107;
             --danger-color: #dc3545;
             --dark-color: #343a40;
+            
+            /* Các biến đổ bóng cao cấp đồng bộ menu tổng */
+            --main-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            --item-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
@@ -25,71 +30,86 @@
         body {
             background-color: #e9ecef;
             color: #333;
-            padding: 15px;
+            padding: 0px 24px;
+            min-height: 100vh;
         }
 
+        /* LÀM MỀM KHỐI HEADER BANNER */
         header {
             background: linear-gradient(135deg, #003366, #0056b3);
             color: white;
-            padding: 15px;
-            border-radius: 5px 5px 0 0;
+            padding: 24px 30px;
+            border-radius: 16px 16px 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: var(--main-shadow);
         }
 
         header h1 {
-            font-size: 1.5rem;
-            letter-spacing: 1px;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
 
         header .version {
             font-size: 0.85rem;
-            background: rgba(255,255,255,0.2);
-            padding: 4px 8px;
-            border-radius: 4px;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 8px;
+            backdrop-filter: blur(4px);
         }
 
+        /* FIX: DÀN ĐỀU THANH TABS NAVIGATION */
         .nav-tabs {
             display: flex;
             background-color: #dfe4ea;
-            border-bottom: 2px solid var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
             list-style: none;
+            padding: 8px 12px 0 12px;
+            gap: 6px;
+            justify-content: space-between; 
         }
 
         .tab-link {
-            padding: 12px 20px;
+            padding: 14px 24px;
             cursor: pointer;
             background-color: #e4e7eb;
             border: 1px solid var(--border-color);
             border-bottom: none;
-            margin-right: 4px;
-            font-weight: bold;
+            font-weight: 700;
             color: var(--dark-color);
-            transition: all 0.2s;
-            border-radius: 4px 4px 0 0;
+            transition: var(--transition-smooth);
+            border-radius: 12px 12px 0 0;
+            font-size: 0.9rem;
+            letter-spacing: -0.01em;
+            flex: 1; 
+            text-align: center; 
         }
 
         .tab-link:hover {
             background-color: #d1d8e0;
+            padding-top: 12px;
         }
 
         .tab-link.active {
             background-color: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
+            padding-top: 16px;
         }
 
+        /* LÀM MỀM KHỐI NỘI DUNG CHÍNH (TAB CONTENT) */
         .tab-content {
             display: none;
             background-color: white;
-            padding: 20px;
+            padding: 40px;
             border: 1px solid var(--border-color);
             border-top: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border-radius: 0 0 5px 5px;
-            min-height: calc(100vh - 120px); 
+            box-shadow: var(--main-shadow);
+            border-radius: 0 0 16px 16px;
+            min-height: calc(100vh - 200px); 
             height: auto;
             overflow: hidden;
         }
@@ -97,23 +117,29 @@
         .tab-content.active {
             display: block;
         }
-
+        
+        .tab-content .section-title:first-of-type {
+            margin-top: 0 !important;
+        }
+        /* LÀM MỀM THANH TIÊU ĐỀ PHÂN ĐOẠN */
         .section-title {
             background-color: #f1f2f6;
-            padding: 8px 12px;
-            font-weight: bold;
+            padding: 10px 16px;
+            font-weight: 800;
             color: #003366;
-            border-left: 5px solid var(--primary-color);
-            margin: 15px 0 10px 0;
+            border-left: 6px solid var(--primary-color);
+            border-radius: 4px; 
+            margin: 25px 0 15px 0;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
         }
 
         .form-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 12px;
-            margin-bottom: 15px;
+            gap: 16px;
+            margin-bottom: 20px;
         }
 
         .form-group {
@@ -123,70 +149,87 @@
 
         .form-group label {
             font-size: 0.85rem;
-            margin-bottom: 4px;
-            font-weight: 600;
+            margin-bottom: 6px;
+            font-weight: 700;
             color: #4b5563;
         }
 
+        /* LÀM MỀM CÁC Ô NHẬP LIỆU (INPUT, SELECT, TEXTAREA) */
         .form-group input, .form-group select, .form-group textarea {
-            padding: 8px;
+            padding: 10px 14px;
             border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 0.9rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
             outline: none;
+            background-color: #f8fafc;
+            transition: var(--transition-smooth);
         }
 
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(0,86,179,0.2);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(0,86,179,0.15);
         }
 
         .table-responsive {
             overflow-x: auto;
-            margin-top: 10px;
+            margin-top: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--item-shadow);
         }
 
+        /* LÀM MỀM CẤU TRÚC BẢNG (TABLE) */
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 15px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            background-color: #ffffff;
         }
 
         table th, table td {
-            border: 1px solid var(--border-color);
-            padding: 8px;
-            text-align: left;
+            border: 1px solid #edf2f7;
+            padding: 12px 14px;
+            text-align: center; /* <-- Đổi thành center để căn giữa toàn bộ */
         }
 
         table th {
             background-color: #f1f2f6;
             color: var(--dark-color);
-            font-weight: bold;
+            font-weight: 700;
             text-align: center;
+            border-bottom: 2px solid var(--border-color);
         }
 
         .btn-group {
-            margin-top: 20px;
+            margin-top: 30px;
             display: flex;
-            gap: 10px;
+            gap: 12px;
             justify-content: flex-end;
         }
 
         .btn {
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 4px;
+            border-radius: 10px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 700;
             font-size: 0.9rem;
-            transition: background 0.2s;
+            box-shadow: var(--item-shadow);
+            transition: var(--transition-smooth);
+        }
+
+        .btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
 
         .btn:disabled {
-            background-color: #cccccc !important;
-            color: #666666 !important;
+            background-color: #e2e8f0 !important;
+            color: #94a3b8 !important;
             cursor: not-allowed;
+            box-shadow: none;
         }
 
         .btn-primary { background-color: var(--primary-color); color: white; }
@@ -196,11 +239,13 @@
         .btn-secondary { background-color: #6c757d; color: white; }
         .btn-secondary:hover { background-color: #5a6268; }
 
+        /* LÀM MỀM CẤU TRÚC MODAL XEM TRƯỚC TỜ KHAI */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(4px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -208,13 +253,14 @@
 
         .modal-content {
             background-color: white;
-            padding: 25px;
-            border-radius: 6px;
+            padding: 40px;
+            border-radius: 20px;
             width: 90%;
             max-width: 1000px;
             max-height: 85vh;
             overflow-y: auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
 
         .modal-header {
@@ -222,17 +268,20 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid #dee2e6;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+            padding-bottom: 16px;
+            margin-bottom: 25px;
         }
 
         .luong-box {
-            padding: 15px;
-            border-radius: 4px;
-            font-weight: bold;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
             text-align: center;
-            margin-top: 15px;
+            margin-top: 20px;
             font-size: 1.1rem;
+            box-shadow: var(--item-shadow);
         }
         .luong-xanh { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
         .luong-vang { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
@@ -241,86 +290,122 @@
         .cont-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 5px;
+            gap: 12px;
+            margin-top: 8px;
         }
 
-        /* Thêm CSS cho vòng tròn Loading đồng bộ */
         .spinner {
             border: 4px solid #f3f3f3;
             border-top: 4px solid var(--primary-color);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 15px auto;
+            margin: 0 auto 20px auto;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
+        footer {
+            margin-top: 40px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--item-shadow);
+        }
+        footer strong p {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+
+        /* FIX: TỐI ƯU CĂN CHỈNH TOÀN DIỆN CHO TRANG IN ẤN VẬT LÝ */
         @media print {
-    /* Ẩn hoàn toàn toàn bộ cấu trúc giao diện chính của trang web */
-    body > *:not(.modal), 
-    header, 
-    .nav-tabs, 
-    .tab-content, 
-    footer { 
-        display: none !important; 
-    }
-    
-    /* Cấu hình hiển thị độc quyền cho vùng nội dung Modal được chọn in */
-    .modal {
-        position: absolute !important;
-        left: 0 !important;
-        top: 0 !important;
-        width: 100% !important;
-        height: auto !important;
-        background: transparent !important;
-        display: block !important;
-        overflow: visible !important;
-    }
-    
-    .modal-content {
-        border: none !important;
-        box-shadow: none !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        overflow: visible !important;
-        max-height: none !important;
-    }
-    
-    /* Ẩn các nút thao tác điều khiển không cần thiết khi lên giấy */
-    .modal-header,
-    .btn-group,
-    .no-print,
-    #modal-actions-group,
-    #btn-close-modal {
-        display: none !important;
-    }
-    
-    /* Thiết lập vùng chứa dữ liệu in bung toàn màn hình */
-    #printArea {
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
+            @page {
+                size: A4;
+                margin: 15mm 10mm 15mm 15mm;
+            }
+
+            body > *:not(.modal), header, .nav-tabs, .tab-content, footer, .no-print { 
+                display: none !important; 
+            }
+
+            body {
+                background: #fff !important;
+                color: #000 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .modal {
+                position: absolute !important;
+                left: 0 !important; 
+                top: 0 !important;
+                width: 100% !important; 
+                height: auto !important;
+                background: transparent !important;
+                display: block !important; 
+                overflow: visible !important;
+                box-shadow: none !important;
+                backdrop-filter: none !important;
+            }
+
+            .modal-content {
+                border: none !important; 
+                box-shadow: none !important;
+                width: 100% !important; 
+                max-width: 100% !important;
+                padding: 0 !important; 
+                margin: 0 !important;
+                overflow: visible !important; 
+                max-height: none !important;
+                background: transparent !important;
+            }
+
+            .modal-header, .btn-group, #modal-actions-group, #btn-close-modal {
+                display: none !important;
+            }
+
+            #printArea {
+                width: 100% !important; 
+                margin: 0 !important; 
+                padding: 0 !important;
+            }
+
+            table, th, td {
+                border: 1px solid #000 !important;
+                color: #000 !important;
+            }
+            
+            th {
+                background-color: #f2f2f2 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            tr {
+                page-break-inside: avoid !important;
+            }
+            #printArea table td, #printArea table th {
+            text-align: center !important;
 }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <div style="background-color: #ffffff; padding: 10px; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.15); width: 70px; height: 70px; overflow: hidden;">
-                <img src="nkd.png" alt="NKD Logo" style="max-width: 130%; max-height: 130%; object-fit: contain;">
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <div style="display: flex; align-items: center; justify-content: center; height: 75px;">
+                <img src="nkdkhaibao.png" alt="NKD Logo" style="height: 100%; width: auto; object-fit: contain;">
             </div>
             <div>
-                <h1 style="font-size: 1.4rem; margin: 0;">MÔ PHỎNG HỆ THỐNG KHAI BÁO HẢI QUAN ECUS5 - VNACCS</h1>
-                <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 2px; font-weight: 500;">Giải pháp tích hợp Nghiệp vụ Chuỗi cung ứng &amp; Logistics</p>
+                <h1 style="margin: 0;">MÔ PHỎNG HỆ THỐNG KHAI BÁO HẢI QUAN ECUS5 - VNACCS</h1>
+                <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 4px; font-weight: 600; letter-spacing: 0.02em;">Giải pháp tích hợp Nghiệp vụ Chuỗi cung ứng &amp; Logistics</p>
             </div>
         </div>
         <div class="version">Phiên bản đào tạo thực hành</div>
@@ -391,12 +476,12 @@
         </div>
 
         <div class="section-title">Lựa chọn loại hình nghiệp vụ khai báo</div>
-        <div style="display: flex; gap: 30px; margin: 20px 0; padding: 10px;">
-            <label style="font-weight: bold; cursor: pointer; font-size: 1.1rem; color: #0056b3;">
-                <input type="radio" name="loai-hinh-khai" value="NK" checked onclick="switchKhaiBao('NK')"> 📥 KHAI NHẬP KHẨU (VNACCS/IDA)
+        <div style="display: flex; gap: 40px; margin: 25px 0; padding: 10px 15px; background: #f8fafc; border-radius: 12px; border: 1px dashed var(--border-color);">
+            <label style="font-weight: bold; cursor: pointer; font-size: 1.1rem; color: #0056b3; display: flex; align-items: center; gap: 8px;">
+                <input type="radio" name="loai-hinh-khai" value="NK" checked onclick="switchKhaiBao('NK')" style="width: 18px; height: 18px;"> 📥 KHAI NHẬP KHẨU (VNACCS/IDA)
             </label>
-            <label style="font-weight: bold; cursor: pointer; font-size: 1.1rem; color: #28a745;">
-                <input type="radio" name="loai-hinh-khai" value="XK" onclick="switchKhaiBao('XK')"> 📤 KHAI XUẤT KHẨU (VNACCS/EDAX)
+            <label style="font-weight: bold; cursor: pointer; font-size: 1.1rem; color: #28a745; display: flex; align-items: center; gap: 8px;">
+                <input type="radio" name="loai-hinh-khai" value="XK" onclick="switchKhaiBao('XK')" style="width: 18px; height: 18px;"> 📤 KHAI XUẤT KHẨU (VNACCS/EDAX)
             </label>
         </div>
         <div class="btn-group" style="justify-content: flex-start;">
@@ -501,7 +586,7 @@
             </div>
             <div class="form-group">
                 <label>Số lượng kiện / Đơn vị kiện (*)</label>
-                <div style="display:flex; gap:5px;">
+                <div style="display:flex; gap:8px;">
                     <input type="number" id="nk-sl-kien" value="10" style="width:40%;">
                     <select id="nk-dv-kien" style="width:60%;">
                         <option value="PLT" selected>PLT - Pallet</option>
@@ -522,7 +607,7 @@
             </div>
             <div class="form-group">
                 <label>Tổng trọng lượng hàng (Gross Weight)</label>
-                <div style="display:flex; gap:5px;">
+                <div style="display:flex; gap:8px;">
                     <input type="number" id="nk-trongluong" value="1500" style="width:60%;">
                     <select id="nk-dv-tl" style="width:40%;"><option value="KGM">KGS</option></select>
                 </div>
@@ -539,7 +624,7 @@
             </div>
             <div class="form-group">
                 <label>Trị giá hóa đơn / Đồng tiền (*)</label>
-                <div style="display:flex; gap:5px;">
+                <div style="display:flex; gap:8px;">
                     <input type="number" id="nk-inv-val" value="15000" style="width:50%">
                     <select id="nk-currency" style="width:50%;">
                         <option value="USD" selected>USD - Đô la Mỹ</option>
@@ -583,22 +668,22 @@
                 <label>Phương thức thanh toán (*)</label>
                 <select id="nk-payment-method">
                     <option value="BIENMAU" selected>BIENMAU - Biên mậu</option>
-                    <option value="CAD">CAD - Trà tiền lấy chứng tử</option>
+                    <option value="CAD">CAD - Trả tiền lấy chứng từ</option>
                     <option value="CANTRU">CANTRU - Cấn trừ</option>
                     <option value="CASH">CASH - Tiền mặt</option>
                     <option value="CHEQUE">CHEQUE - Séc</option>
-                    <option value="DA">DA - Nhỏ thu chấp nhận chúng từ</option>
-                    <option value="DP">DP - Nhờ thu kèm chúng từ</option>
-                    <option value="GV">GV - Góp võn</option>
+                    <option value="DA">DA - Nhờ thu chấp nhận chứng từ</option>
+                    <option value="DP">DP - Nhờ thu kèm chứng từ</option>
+                    <option value="GV">GV - Góp vốn</option>
                     <option value="H-D-H">H-D-H - Hàng đổi hàng</option>
-                    <option value="H-T-N">H-T-N - Hàng trà nọ</option>
-                    <option value="HPH">HPH - Hồi phiếu</option>
+                    <option value="H-T-N">H-T-N - Hàng trả nợ</option>
+                    <option value="HPH">HPH - Hối phiếu</option>
                     <option value="KC">KC - Khác (bao gồm cả thanh toán bằng hình thức TT)</option>
                     <option value="KHONGTT">KHONGTT - Không thanh toán</option>
-                    <option value="LC">LC - Liên doanh đầu tư</option>
-                    <option value="LDDT">LDDT - Nhỏ thu chấp nhận chúng từ</option>
-                    <option value="OA">OA - Mở tài khoản thanh toá</option>
-                    <option value="TTR">TTR - Chuyển tiền bởi hoàn bằng điện</option>
+                    <option value="LC">LC - Tín dụng thư</option>
+                    <option value="LDDT">LDDT - Liên doanh đầu tư</option>
+                    <option value="OA">OA - Mở tài khoản thanh toán</option>
+                    <option value="TTR">TTR - Chuyển tiền bồi hoàn bằng điện</option>
                 </select>
             </div>
         </div>
@@ -647,17 +732,15 @@
                 </tbody>
             </table>
         </div>
-        <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
-           <div class="form-group" style="border: 1px dashed #bbb; padding: 10px; border-radius: 4px; background: #fafafa;">
+        <div class="form-grid" style="grid-template-columns: 1fr 1fr; margin-top: 15px;">
+           <div class="form-group" style="border: 1px dashed #bbb; padding: 15px; border-radius: 10px; background: #fafafa;">
                 <label style="color:#0056b3;">Đính kèm tập tin điện tử chứng từ (Hợp đồng, Invoice, B/L, Packing List...)</label>
                 <input type="file" id="nk-file-dinhkem" accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg" multiple style="border:none; background:transparent;" onchange="hienThiDanhSachFile(this, 'nk')">
-                <p style="font-size:0.75rem; color:#666; margin-top:4px;">Chấp nhận các định dạng: PDF, WORD, EXCEL, HÌNH ẢNH.</p>
-                
                 <div id="nk-file-list" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;"></div>
             </div>
             <div class="form-group">
                 <label>Thông tin ghi chú khác / Nội dung nhập liệu bổ sung bằng tay</label>
-                <textarea id="nk-ghi-chu-khac" rows="2" placeholder="Nhập thêm các điều khoản, thông số đặc thù hoặc ghi chú nội bộ của lô hàng xuất khẩu tại ô này..."></textarea>
+                <textarea id="nk-ghi-chu-khac" rows="3" placeholder="Nhập thêm các điều khoản, thông số đặc thù hoặc ghi chú nội bộ của lô hàng..."></textarea>
             </div>
         </div>
         <div class="btn-group">
@@ -740,12 +823,6 @@
                     <option value="VNHPH">VNHPH - Cảng Hải Phòng (Hải Phòng)</option>
                     <option value="VNDAD">VNDAD - Cảng Đà Nẵng (Đà Nẵng)</option>
                     <option value="VNVUT">VNVUT - Cảng Vũng Tàu</option>
-                    <option value="VNSGN">VNSGN - Sân bay Tân Sơn Nhất</option>
-                    <option value="VNHAN">VNHAN - Sân bay Nội Bài</option>
-                    <option value="SGSIN">SGSIN - Cảng Singapore</option>
-                    <option value="CNSHA">CNSHA - Cảng Thượng Hải (Trung Quốc)</option>
-                    <option value="JPTOK">JPTOK - Cảng Tokyo (Nhật Bản)</option>
-                    <option value="USLAX">USLAX - Cảng Los Angeles (Mỹ)</option>
                     <option value="KHAC">Cảng khác (Tự nhập từ bàn phím)</option>
                 </select>
                 <input type="text" id="xk-port-loading-khac" placeholder="Nhập mã và tên cảng xếp khác..." style="display: none; margin-top: 8px;">
@@ -756,13 +833,8 @@
                     <option value="USLAX" selected>USLAX - Cảng Los Angeles (Mỹ)</option>
                     <option value="USNYC">USNYC - Cảng New York (Mỹ)</option>
                     <option value="JPTOK">JPTOK - Cảng Tokyo (Nhật Bản)</option>
-                    <option value="JPOSA">JPOSA - Cảng Osaka (Nhật Bản)</option>
                     <option value="CNSHA">CNSHA - Cảng Thượng Hải (Trung Quốc)</option>
-                    <option value="CNSZX">CNSZX - Cảng Thâm Quyến (Trung Quốc)</option>
                     <option value="SGSIN">SGSIN - Cảng Singapore</option>
-                    <option value="NLRTM">NLRTM - Cảng Rotterdam (Hà Lan)</option>
-                    <option value="DEHAM">DEHAM - Cảng Hamburg (Đức)</option>
-                    <option value="VNCLI">VNCLI - Cảng Cát Lái (Việt Nam)</option>
                     <option value="KHAC">Cảng khác (Tự nhập từ bàn phím)</option>
                 </select>
                 <input type="text" id="xk-port-unloading-khac" placeholder="Nhập mã và tên cảng dỡ khác..." style="display: none; margin-top: 8px;">
@@ -772,8 +844,6 @@
                 <select id="xk-kho-cho" onchange="checkKhoCho(this, 'xk')">
                     <option value="02IKS01" selected>02IKS01 - Kho bãi CFS Cảng Cát Lái</option>
                     <option value="02DSS02">02DSS02 - Bãi Container Cảng Đình Vũ Hải Phòng</option>
-                    <option value="43NGS01">43NGS01 - Kho hàng hóa Sân bay Tân Sơn Nhất</option>
-                    <option value="39EES01">39EES01 - Bãi cảng Cái Mép Quốc tế</option>
                     <option value="KHAC">Kho khác (Tự nhập từ bàn phím)</option>
                 </select>
                 <input type="text" id="xk-kho-cho-khac" placeholder="Nhập mã và tên kho bãi xuất khẩu khác..." style="display: none; margin-top: 8px;">
@@ -829,8 +899,6 @@
                     <option value="L/C">L/C - Tín dụng thư chứng từ</option>
                     <option value="D/P">D/P - Nhờ thu kèm chứng từ giao hàng</option>
                     <option value="D/A">D/A - Nhờ thu chấp nhận chứng từ</option>
-                    <option value="CAD">CAD - Giao chứng từ nhận tiền ngay</option>
-                    <option value="KHONG">KHONG - Không thanh toán (Hàng phi mậu dịch)</option>
                 </select>
             </div>
             <div class="form-group">
@@ -839,24 +907,16 @@
                     <option value="FOB" selected>FOB - Free On Board (Giao lên tàu)</option>
                     <option value="EXW">EXW - Ex Works (Giao tại xưởng)</option>
                     <option value="CIF">CIF - Cost, Insurance &amp; Freight</option>
-                    <option value="CFR">CFR - Cost and Freight</option>
-                    <option value="FCA">FCA - Free Carrier</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Tổng Trị giá hóa đơn / Đồng tiền (*)</label>
-                <div style="display:flex; gap:5px;">
+                <div style="display:flex; gap:8px;">
                     <input type="number" id="xk-inv-val" value="28500" style="width:60%">
                     <select id="xk-currency" style="width:40%;">
                         <option value="USD" selected>USD - Đô la Mỹ</option>
                         <option value="EUR">EUR - Đồng Euro</option>
-                        <option value="JPY">JPY - Đồng Yên Nhật</option>
-                        <option value="GBP">GBP - Đồng Bảng Anh</option>
-                        <option value="AUD">AUD - Đồng Đô la Úc</option>
-                        <option value="CNY">CNY - Đồng Nhân dân tệ</option>
-                        <option value="KRW">KRW - Đồng Won Hàn Quốc</option>
-                        <option value="SGD">SGD - Đồng Đô la Singapore</option>
-                        <option value="VND">VND - Đồng Việt Nam</option>                       
+                        <option value="JPY">JPY - Đồng Yên Nhật</option>                      
                     </select>
                 </div>
             </div>
@@ -884,22 +944,19 @@
 
         <div class="section-title">Quản lý Chứng từ đính kèm tờ khai (V5 nghiệp vụ)</div>
         <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
-            <div class="form-group" style="border: 1px dashed #bbb; padding: 10px; border-radius: 4px; background: #fafafa;">
+            <div class="form-group" style="border: 1px dashed #bbb; padding: 15px; border-radius: 10px; background: #fafafa;">
                 <label style="color:#0056b3;">Đính kèm tập tin điện tử chứng từ (Hợp đồng, Invoice, B/L, Packing List...)</label>
-                
                 <input type="file" id="xk-file-dinhkem" accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg" multiple style="border:none; background:transparent;" onchange="hienThiDanhSachFile(this, 'xk')">
-                <p style="font-size:0.75rem; color:#666; margin-top:4px;">Chấp nhận các định dạng: PDF, WORD, EXCEL, HÌNH HẢNH.</p>
-                
                 <div id="xk-file-list" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;"></div>
             </div>
             <div class="form-group">
                 <label>Thông tin ghi chú khác / Nội dung nhập liệu bổ sung bằng tay</label>
-                <textarea id="xk-ghi-chu-khac" rows="2" placeholder="Nhập thêm các điều khoản, thông số đặc thù hoặc ghi chú nội bộ của lô hàng xuất khẩu tại ô này..."></textarea>
+                <textarea id="xk-ghi-chu-khac" rows="3" placeholder="Nhập thêm các điều khoản, thông số đặc thù..."></textarea>
             </div>
         </div>
 
         <div class="section-title">Thông tin chi tiết Đóng gói Container</div>
-        <div style="background: #fdfefe; border: 1px solid var(--border-color); padding: 15px; border-radius: 4px; margin-bottom: 15px;">
+        <div style="background: #fdfefe; border: 1px solid var(--border-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; box-shadow: var(--item-shadow);">
             <div class="form-grid">
                 <div class="form-group">
                     <label>Mã địa điểm xếp hàng Container</label>
@@ -914,7 +971,7 @@
                     <input type="text" id="xk-cont-diachi" value="Nguyễn Thị Định, Quận 2, Thành phố Hồ Chí Minh">
                 </div>
             </div>
-            <label style="font-size: 0.85rem; font-weight: 600; color: #4b5563;">Danh sách số hiệu vỏ Container đóng gói lô hàng:</label>
+            <label style="font-size: 0.85rem; font-weight: 700; color: #4b5563;">Danh sách số hiệu vỏ Container đóng gói lô hàng:</label>
             <div class="cont-grid">
                 <input type="text" class="xk-cont-so" value="EMCU1234567" placeholder="Số Cont 1">
                 <input type="text" class="xk-cont-so" placeholder="Số Cont 2 (Nếu có)">
@@ -927,7 +984,7 @@
         <div class="form-grid">
             <div class="form-group">
                 <label>Số lượng kiện và Đơn vị kiện (*)</label>
-                <div style="display:flex; gap:5px;">
+                <div style="display:flex; gap:8px;">
                     <input type="number" id="xk-sl-kien" value="25" style="width:40%;">
                     <select id="xk-dv-kien" style="width:60%;">
                         <option value="CTN" selected>CTN - Carton (Thùng các tông)</option>
@@ -939,7 +996,7 @@
             </div>
             <div class="form-group">
                 <label>Tổng trọng lượng hàng (Gross Weight)</label>
-                <div style="display:flex; gap:5px;">
+                <div style="display:flex; gap:8px;">
                     <input type="number" id="xk-trongluong" value="3800" style="width:60%;">
                     <select id="xk-dv-tl" style="width:40%;"><option value="KGM">KGS</option><option value="TNE">Tấn</option></select>
                 </div>
@@ -1025,7 +1082,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 style="color: #003366;" id="modal-title-header">BẢN XEM TRƯỚC TỜ KHAI</h2>
-                <button onclick="closeModal()" style="font-size: 1.5rem; border: none; background: transparent; cursor: pointer;">&times;</button>
+                <button onclick="closeModal()" style="font-size: 1.8rem; border: none; background: transparent; cursor: pointer;">&times;</button>
             </div>
             <div id="printArea">
                 <div id="print-content"></div>
@@ -1041,7 +1098,7 @@
         let currentType = "NK";
         let currentData = {};
         let historyList = [];
-        let isProcessing = false; // Biến cờ bảo vệ chống Double Click gây lỗi tiến trình luồng ngầm
+        let isProcessing = false;
 
         window.onload = function() {
             const t = new Date();
@@ -1177,14 +1234,7 @@
                 filesArray.forEach((file, index) => {
                     const fileURL = URL.createObjectURL(file);
                     const fileBadge = document.createElement("div");
-                    fileBadge.style.display = "inline-flex";
-                    fileBadge.style.alignItems = "center";
-                    fileBadge.style.border = "1px solid #333";
-                    fileBadge.style.borderRadius = "4px";
-                    fileBadge.style.padding = "4px 8px";
-                    fileBadge.style.background = "#fff";
-                    fileBadge.style.fontSize = "0.85rem";
-                    fileBadge.style.maxWidth = "220px";
+                    fileBadge.style.cssText = "display:inline-flex; align-items:center; border:1px solid #ccc; border-radius:6px; padding:4px 10px; background:#fff; font-size:0.85rem;";
                     
                     const fileLink = document.createElement("a");
                     fileLink.href = fileURL;
@@ -1234,12 +1284,8 @@
         }
         function dongBoHaiQuan(selectElement) {
             const selectedValue = selectElement.value;
-            
-            // Đồng bộ sang ô Hải quan tiếp nhận của Nhập khẩu
             const nkHq = document.getElementById("nk-hq");
             if (nkHq) nkHq.value = selectedValue;
-            
-            // Đồng bộ sang ô Hải quan tiếp nhận của Xuất khẩu
             const xkHq = document.getElementById("xk-hq");
             if (xkHq) xkHq.value = selectedValue;
         }
@@ -1284,6 +1330,7 @@
                         <select class="xk-dv-hang-select" style="width:100%; padding: 4px;" onchange="xuLyDonViKhacXuatKhau(this)">
                             <option value="Cái" selected>Cái / Chiếc</option>
                             <option value="Bộ">Bộ</option>
+                            <option value="Kg">Kg</option>
                             <option value="KHAC">Đơn vị khác</option>
                         </select>
                         <input type="text" class="xk-dv-hang-input" placeholder="Nhập đơn vị..." style="width: 100%; margin-top: 5px; display: none;">
@@ -1337,7 +1384,7 @@
                     dvText = dvSelect.options[dvSelect.selectedIndex].text;
                 }                
                 tongTrigiaHoaDon += (sl * dg);
-                luongTuyenVND += (sl * dg * tg); // Lũy kế quy đổi VND theo tỷ giá dòng
+                luongTuyenVND += (sl * dg * tg);
 
                 if(type === 'NK') {
                     let ts_nk = rows[i].querySelector(".nk-ts-nk").value;
@@ -1346,9 +1393,17 @@
                     let ts_gtgt = rows[i].querySelector(".nk-ts-gtgt").value;
                     listHangHtml += `
                         <tr>
-                            <td style="text-align:center;">${i+1}</td><td>${hs}</td><td>${ten}</td><td style="text-align:center;">${sl}</td><td style="text-align:center;">${dvText}</td><td style="text-align:right;">${dg.toLocaleString()}</td>
+                            <td style="text-align:center;">${i+1}</td>
+                            <td>${hs}</td>
+                            <td>${ten}</td>
+                            <td style="text-align:center;">${sl}</td>
+                            <td style="text-align:center;">${dvText}</td>
+                            <td style="text-align:right;">${dg.toLocaleString()}</td>
                             <td style="text-align:right; font-weight:bold; color:#0056b3;">${tg.toLocaleString()}</td>
-                            <td style="text-align:center;">${ts_nk}%</td><td style="text-align:center;">${ts_ttdb}%</td><td style="text-align:center;">${ts_bvmt}đ</td><td style="text-align:center;">${ts_gtgt}%</td>
+                            <td style="text-align:center; width: 4%; font-size: 0.85rem;">${ts_nk}%</td>
+                            <td style="text-align:center; width: 4%; font-size: 0.85rem;">${ts_ttdb}%</td>
+                            <td style="text-align:center; width: 4%; font-size: 0.85rem;">${ts_bvmt}đ</td>
+                            <td style="text-align:center; width: 4%; font-size: 0.85rem;">${ts_gtgt}%</td>
                         </tr>
                     `;
                 } else {
@@ -1356,17 +1411,21 @@
                     let ts_vat = rows[i].querySelector(".xk-ts-vat").value;
                     listHangHtml += `
                         <tr>
-                            <td style="text-align:center;">${i+1}</td><td>${hs}</td><td>${ten}</td><td style="text-align:center;">${sl}</td><td style="text-align:center;">${dvText}</td><td style="text-align:right;">${dg.toLocaleString()}</td>
+                            <td style="text-align:center;">${i+1}</td>
+                            <td>${hs}</td>
+                            <td>${ten}</td>
+                            <td style="text-align:center;">${sl}</td>
+                            <td style="text-align:center;">${dvText}</td>
+                            <td style="text-align:right;">${dg.toLocaleString()}</td>
                             <td style="text-align:right; font-weight:bold; color:#28a745;">${tg.toLocaleString()}</td>
-                            <td style="text-align:center;" colspan="1">${ts_xk}%</td><td style="text-align:center;" colspan="2">${ts_vat}%</td>
+                            <td style="text-align:center;">${ts_xk}%</td>
+                            <td style="text-align:center;">${ts_vat}%</td>
                         </tr>
                     `;
                 }
             }
 
             document.getElementById(`${type.toLowerCase()}-inv-val`).value = tongTrigiaHoaDon;
-            
-            // Cập nhật lại thuộc tính quy đổi tổng hợp dựa trên lũy kế dòng
             if(type === 'XK') {
                 document.getElementById("xk-trigia-tinhthue").value = luongTuyenVND.toLocaleString() + " VNĐ";
             }
@@ -1460,10 +1519,41 @@
             document.getElementById("btn-submit-chinhthuc").style.display = "inline-block";
             document.getElementById("btn-close-modal").style.display = "inline-block";
 
+            // FIX: Tiêu đề 1 hàng chuẩn, Thuế suất thiết lập gộp 4 ô số dưới
+            let tableHeaderHtml = "";
+            if (type === 'NK') {
+                tableHeaderHtml = `
+                    <tr style="background:#eee;">
+                        <th width="4%">STT</th>
+                        <th width="10%">Mã HS</th>
+                        <th width="34%">Mô tả tên hàng chi tiết</th>
+                        <th width="8%">Số lượng</th>
+                        <th width="10%">Đơn vị tính</th>
+                        <th width="8%">Đơn giá</th>
+                        <th width="10%">Tỷ giá VND</th>
+                        <th colspan="4" style="text-align:center; width: 16%;">Thuế suất thiết lập</th>
+                    </tr>
+                `;
+            } else {
+                tableHeaderHtml = `
+                    <tr style="background:#eee;">
+                        <th width="4%">STT</th>
+                        <th width="12%">Mã HS</th>
+                        <th width="38%">Mô tả tên hàng chi tiết</th>
+                        <th width="8%">Số lượng</th>
+                        <th width="12%">Đơn vị tính</th>
+                        <th width="12%">Đơn giá</th>
+                        <th width="14%">Tỷ giá VND</th>
+                        <th width="5%">Thuế XK</th>
+                        <th width="5%">Thuế VAT</th>
+                    </tr>
+                `;
+            }
+
             let htmlView = `
-                <div style="border: 2px dashed #0056b3; padding: 15px; background-color: #fff; font-size:0.85rem;">
+                <div style="border: 2px dashed #0056b3; padding: 20px; background-color: #fff; font-size:0.9rem; border-radius:12px;">
                     <h3 style="text-align:center; color:#003366; margin-bottom:12px;">TỜ KHAI THỬ ĐĂNG KÝ HÀNG ${type === 'NK' ? 'NHẬP KHẨU' : 'XUẤT KHẨU'}</h3>
-                    <table style="width:100%; border-collapse:collapse;" border="1" cellpadding="5">
+                    <table style="width:100%; border-collapse:collapse;" border="1" cellpadding="5";>
                         <tr><td width="30%"><b>Doanh nghiệp đăng ký:</b></td><td>${currentData.doanhnghiep} (MST: ${currentData.mst})</td></tr>
                         <tr><td><b>Mã loại hình khai báo:</b></td><td><b>${currentData.loaihinh}</b> | Cơ quan tiếp nhận: ${currentData.coquan}</td></tr>
                         <tr><td><b>Thông tin Logistics:</b></td><td>Vận đơn/Booking: ${currentData.vandon} | Vận chuyển: ${currentData.ptvc} | Phương tiện: ${currentData.mahieuPtvc}</td></tr>
@@ -1476,20 +1566,19 @@
                         <tr><td><b>Tệp chứng từ số gốc đính kèm (V5):</b></td><td><span style="color:#28a745;">📁 ${currentData.fileDinhKem}</span></td></tr>
                         ${currentData.ghiChuNhapTay ? `<tr><td><b>Nội dung ghi chú nhập tay:</b></td><td><i>${currentData.ghiChuNhapTay}</i></td></tr>` : ''}
                     </table>
-                    <h4 style="margin: 12px 0 5px 0; color:#003366;">Chi tiết các dòng hàng hóa khai báo:</h4>
-                    <table style="width:100%; border-collapse:collapse; font-size:0.8rem;" border="1" cellpadding="4">
-                        <thead>
-                            <tr style="background:#eee;"><th>STT</th><th>Mã HS</th><th>Mô tả tên hàng chi tiết</th><th>Số lượng</th><th>Don vi tinh</th><th>Don gia</th><th>Tỷ giá VND</th><th colspan="4">Thuế suất thiết lập</th></tr>
-                        </thead>
-                        <tbody>${currentData.listHangTable}</tbody>
-                    </table>
+                    <h4 style="margin: 15px 0 8px 0; color:#003366;">Chi tiết các dòng hàng hóa khai báo:</h4>
+                    <div style="width: 100%; overflow: hidden;">
+                        <table style="width:100%; table-layout: fixed; border-collapse:collapse; font-size:0.85rem;" border="1" cellpadding="5">
+                            <thead>${tableHeaderHtml}</thead>
+                            <tbody>${currentData.listHangTable}</tbody>
+                        </table>
+                    </div>
                 </div>
             `;
             document.getElementById("print-content").innerHTML = htmlView;
             document.getElementById("tk-modal").style.display = "flex";
         }
 
-        // ĐÃ NÂNG CẤP CHUYỂN ĐỔI SANG MÔ HÌNH PHÂN LUỒNG BẤT ĐỒNG BỘ ĐỂ GIẢ LẬP ĐỘ TRỄ THỰC TẾ
         async function guiToKhaiChinhThuc() {
             if (isProcessing) return;
             isProcessing = true;
@@ -1538,13 +1627,12 @@
             let chiTietThueText = "";
             const rows = currentData.rawRows;
 
-            // ĐỔI MỚI THUẬT TOÁN TÍNH THUẾ: Áp dụng lũy kế bóc tách tỷ giá riêng biệt nhập tay từng dòng
             if(currentData.nghiepvu === 'NK') {
                 let thueNK = 0, thueTTDB = 0, thueBVMT = 0, thueGTGT = 0;
                 for(let i=0; i<rows.length; i++) {
                     let sl = parseFloat(rows[i].querySelector(".nk-sl").value) || 0;
                     let dg = parseFloat(rows[i].querySelector(".nk-dg").value) || 0;
-                    let tg = parseFloat(rows[i].querySelector(".nk-tg").value) || 1; // Đọc ô tỷ giá riêng từng dòng NK
+                    let tg = parseFloat(rows[i].querySelector(".nk-tg").value) || 1; 
                     let ts_nk = parseFloat(rows[i].querySelector(".nk-ts-nk").value) || 0;
                     let ts_ttdb = parseFloat(rows[i].querySelector(".nk-ts-ttdb").value) || 0;
                     let ts_bvmt = parseFloat(rows[i].querySelector(".nk-ts-bvmt").value) || 0;
@@ -1563,7 +1651,7 @@
                 for(let i=0; i<rows.length; i++) {
                     let sl = parseFloat(rows[i].querySelector(".xk-sl").value) || 0;
                     let dg = parseFloat(rows[i].querySelector(".xk-dg").value) || 0;
-                    let tg = parseFloat(rows[i].querySelector(".xk-tg").value) || 1; // Đọc ô tỷ giá riêng từng dòng XK
+                    let tg = parseFloat(rows[i].querySelector(".xk-tg").value) || 1; 
                     let ts_xk = parseFloat(rows[i].querySelector(".xk-ts-xk").value) || 0;
                     let ts_vat = parseFloat(rows[i].querySelector(".xk-ts-vat").value) || 0;
 
@@ -1600,7 +1688,7 @@
                     </div>
                     <table style="width:100%; border-collapse:collapse;" border="1" cellpadding="6">
                         <tr style="background:#f4f6f7;"><td width="40%"><b>MÃ SỐ TỜ KHAI CHÍNH THỨC:</b></td><td><b style="font-size:1.3rem; color:#0056b3;">${currentData.maToKhai}</b></td></tr>
-                        <tr><td><b>N nghiệp vụ áp dụng:</b></td><td><b>${currentData.nghiepvu === 'NK' ? 'Tờ khai Nhập khẩu (IDA)' : 'Tờ khai Xuất khẩu (EDAX)'}</b></td></tr>
+                        <tr><td><b>Nghiệp vụ áp dụng:</b></td><td><b>${currentData.nghiepvu === 'NK' ? 'Tờ khai Nhập khẩu (IDA)' : 'Tờ khai Xuất khẩu (EDAX)'}</b></td></tr>
                         <tr><td><b>Cơ sở bãi kho giám sát chỉ định:</b></td><td><b>${currentData.khoCho}</b></td></tr>
                         <tr style="background:#fdf2e9;"><td><b>TỔNG NGHĨA VỤ THUẾ LŨY KẾ DÒNG:</b></td><td><b style="color:red; font-size:1.2rem;">${tongTienThuePhaiNop.toLocaleString()} VNĐ</b></td></tr>
                     </table>
@@ -1645,15 +1733,46 @@
             document.getElementById("btn-submit-chinhthuc").style.display = "none";
             document.getElementById("btn-close-modal").style.display = "inline-block";
 
+            // FIX: Đồng bộ tiêu đề 1 hàng gọn gàng phục vụ in ấn tờ khai Nhập khẩu
+            let tableHeaderHtml = "";
+            if (tk.nghiepvu === 'NK') {
+                tableHeaderHtml = `
+                    <tr style="background:#f2f2f2; font-weight: bold; text-align: center;">
+                        <th width="7%">STT</th>
+                        <th width="12%">Mã HS</th>
+                        <th width="15%">Tên hàng hóa thương mại chi tiết</th>
+                        <th width="8%">Số lượng</th>
+                        <th width="8%">ĐV tính</th>
+                        <th width="8%">Đơn giá</th>
+                        <th width="9%">Tỷ giá VNĐ</th>
+                        <th colspan="4" style="text-align:center !important; width: 20%;">Thuế suất thiết lập</th>
+                    </tr>
+                `;
+            } else {
+                tableHeaderHtml = `
+                    <tr style="background:#f2f2f2; font-weight: bold; text-align: center;">
+                        <th width="4%">STT</th>
+                        <th width="12%">Mã HS</th>
+                        <th>Tên hàng hóa thương mại chi tiết</th>
+                        <th width="10%">Số lượng</th>
+                        <th width="12%">ĐV tính</th>
+                        <th width="12%">Đơn giá</th>
+                        <th width="14%">Tỷ giá VNĐ</th>
+                        <th width="7%">Thuế XK</th>
+                        <th width="7%">Thuế VAT</th>
+                    </tr>
+                `;
+            }
+
             let viewPrint = `
                 <div style="padding:20px; border:3px double #000; background:#fff; font-family: 'Times New Roman', Times, serif; font-size:0.95rem; line-height:1.4; color: #000;">
                     
                     <table style="width:100%; border-collapse:collapse; margin-bottom:15px;">
                         <tr>
-                            <td width="45%" style="vertical-align: top;">
-                                <p style="text-transform: uppercase; font-weight: bold; margin: 0;">Tổng cục Hải quan</p>
-                                <p style="margin: 2px 0 0 0; font-size: 0.9rem;"><b>Đơn vị xử lý:</b> ${tk.coquan}</p>
-                            </td>
+                            <td width="45%" style="vertical-align: top; text-align: left !important;">
+                            <p style="text-transform: uppercase; font-weight: bold; margin: 0; text-align: left !important;">Tổng cục Hải quan</p>
+                            <p style="margin: 2px 0 0 0; font-size: 0.9rem; text-align: left !important;"><b>Đơn vị xử lý:</b> ${tk.coquan}</p>
+                        </td>
                             <td width="55%" style="text-align:center; vertical-align: top;">
                                 <p style="text-transform: uppercase; font-weight: bold; margin: 0;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
                                 <p style="font-weight: bold; margin: 2px 0 0 0; font-size: 0.9rem;">Độc lập - Tự do - Hạnh phúc</p>
@@ -1684,28 +1803,18 @@
                         <p style="margin: 4px 0;"><b>6. Quy cách xếp dỡ:</b> Khối lượng kiện: ${tk.soKien} | Trọng lượng thô: ${tk.trongLuong} | Quy mô: ${tk.slCont}</p>
                     </div>
 
-                    <div style="border: 1px solid #000; padding: 10px; margin-bottom: 15px;">
+                    <div style="border: 1px solid #000; padding: 10px; margin-bottom: 15px; page-break-before: always;">
                         <p style="font-weight: bold; margin: 0 0 8px 0; text-transform: uppercase; border-bottom: 1px dashed #000; padding-bottom: 3px;">III. CHI TIẾT TRỊ GIÁ THƯƠNG MẠI, NỘI DUNG HỢP ĐỒNG &amp; THUẾ VÀO NGÂN SÁCH</p>
                         <p style="margin: 4px 0;"><b>1. Điều kiện thương mại:</b> <b>Hình thức thanh toán:</b> ${tk.phuongThucTT} ${tk.nghiepvu === 'XK' ? ` | Số HĐ: ${tk.soHopDong} | Ngày ký: ${tk.ngayHopDong}` : ''}</p>
                         <p style="margin: 4px 0;"><b>2. Trị giá hóa đơn thương mại:</b> <span style="font-weight: bold; font-size: 1.05rem;">${tk.trigia.toLocaleString()} ${tk.currency}</span> (Số hiệu Invoice: ${tk.sohoadon}) | <b>Điều kiện Incoterms:</b> ${tk.incoterms} | <b>Mã phân loại hóa đơn:</b> Loại hình ${tk.hinhThucInvoice}</p>
                         
                         <p style="font-weight: bold; margin: 12px 0 6px 0; color: #000;">Bảng chi tiết danh mục hàng hóa khai báo:</p>
-                        <table style="width:100%; border-collapse:collapse; font-size:0.85rem; text-align:center; margin-top:5px; margin-bottom: 10px;" border="1" cellpadding="5">
-                            <thead>
-                                <tr style="background:#f2f2f2; font-weight: bold;">
-                                    <th width="4%">STT</th>
-                                    <th width="12%">Mã HS</th>
-                                    <th>Tên hàng hóa thương mại chi tiết</th>
-                                    <th width="8%">Số lượng</th>
-                                    <th width="10%">ĐV tính</th>
-                                    <th width="12%">Đơn giá</th>
-                                    <th width="12%">Tỷ giá dòng</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${tk.listHangTable}
-                            </tbody>
-                        </table>
+                        <div style="width: 100%; margin-top: 5px; margin-bottom: 10px; overflow: hidden;">
+                            <table style="width:100%; table-layout: fixed; border-collapse:collapse; font-size:0.85rem; text-align:center; border: 1px solid #000;" border="1" cellpadding="5">
+                                <thead>${tableHeaderHtml}</thead>
+                                <tbody>${tk.listHangTable}</tbody>
+                            </table>
+                        </div>
                         
                         <div style="margin-top:12px; font-size:0.95rem; border:1px dashed #000; padding:10px; background-color:#fafafa; page-break-inside: avoid;">
                             <p style="margin: 0 0 5px 0; font-weight: bold;">💰 BẢNG KÊ NGHĨA VỤ THUẾ QUY ĐỔI LŨY KẾ (VND):</p>
@@ -1717,7 +1826,7 @@
                     </div>
 
                     <div style="border: 1px solid #000; padding: 10px; margin-bottom: 20px; background:#fafafa; page-break-inside: avoid;">
-                        <p style="font-weight: bold; margin: 0 0 6px 0; text-transform: uppercase; border-bottom: 1px dashed #000; padding-bottom: 3px;">IV. PHÊ DUYỆT CỦA CƠ QUAN HẢI QUAN QUỐC GIA</p>
+                        <p style="font-weight: bold; margin: 0 0 6px 0; text-transform: uppercase; border-bottom: 1px dashed #000; padding-bottom: 3px;">VI. PHÊ DUYỆT CỦA CƠ QUAN HẢI QUAN QUỐC GIA</p>
                         <h3 style="margin: 6px 0; font-size: 1.1rem; font-weight: bold; color: #000;">KẾT QUẢ PHÂN LUỒNG HỆ THỐNG: ${tk.luongText}</h3>
                         <p style="margin: 4px 0;"><b>Chỉ thị nghiệp vụ giám sát hải quan:</b> ${tk.ghiChuHq}</p>
                     </div>
@@ -1757,15 +1866,11 @@
     </script>
 </body>
 <footer>
-<br>
 <strong>
-    <p>Giáo viên hướng dẫn Nguyễn Khánh Dương ©</p>
-    <p>Email: </p>
-    <p>Trang web được lập trình bởi thầy Nguyễn Khánh Dương ©</p>
-    <p></p>
-    <p>LƯU HÀNH NỘI BỘ</p>
-    <p>Đây là phần mềm mô phỏng, không phải là phần mềm chính thức! Vui lòng không truyền tải ra bên ngoài.</p>
+    <p>GV hướng dẫn Nguyễn Khánh Dương ©</p>
+    <p>Email: nguyenkhanhduong0111@gmail.com </p>
+    <p>Trang web được lập trình bởi GV Nguyễn Khánh Dương ©</p>
+    <p>LƯU HÀNH NỘI BỘ. Đây là phần mềm mô phỏng, không phải là phần mềm chính thức! Vui lòng không truyền tải ra bên ngoài.</p>
 </strong>
-</br>
 </footer>
 </html>
